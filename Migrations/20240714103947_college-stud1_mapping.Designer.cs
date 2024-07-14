@@ -4,14 +4,16 @@ using Cliqlearn.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Cliqlearn.Migrations
 {
     [DbContext(typeof(CliqDBContext))]
-    partial class CliqDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240714103947_college-stud1_mapping")]
+    partial class collegestud1_mapping
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,17 +104,12 @@ namespace Cliqlearn.Migrations
                         .HasForeignKey("collegeid");
 
                     b.HasOne("Cliqlearn.Models.Student", "student")
-                        .WithMany("college")
+                        .WithMany()
                         .HasForeignKey("studentid");
 
                     b.Navigation("college");
 
                     b.Navigation("student");
-                });
-
-            modelBuilder.Entity("Cliqlearn.Models.Student", b =>
-                {
-                    b.Navigation("college");
                 });
 #pragma warning restore 612, 618
         }

@@ -4,14 +4,16 @@ using Cliqlearn.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Cliqlearn.Migrations
 {
     [DbContext(typeof(CliqDBContext))]
-    partial class CliqDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240714104726_college-stud1_mappinga")]
+    partial class collegestud1_mappinga
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,14 +57,15 @@ namespace Cliqlearn.Migrations
                     b.Property<int?>("collegeid")
                         .HasColumnType("int");
 
-                    b.Property<int?>("studentid")
+                    b.Property<int>("studentid")
                         .HasColumnType("int");
 
                     b.HasKey("CollegeStudentId");
 
                     b.HasIndex("collegeid");
 
-                    b.HasIndex("studentid");
+                    b.HasIndex("studentid")
+                        .IsUnique();
 
                     b.ToTable("CollegeStudent");
                 });
@@ -102,8 +105,10 @@ namespace Cliqlearn.Migrations
                         .HasForeignKey("collegeid");
 
                     b.HasOne("Cliqlearn.Models.Student", "student")
-                        .WithMany("college")
-                        .HasForeignKey("studentid");
+                        .WithOne("college")
+                        .HasForeignKey("Cliqlearn.Models.CollegeStudent", "studentid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("college");
 

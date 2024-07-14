@@ -13,5 +13,6 @@ namespace Cliqlearn.Models
         }
         public DbSet<Student> students { get; set; }
         public DbSet<College> colleges { get; set; }
+        public DbSet<CollegeStudent> CollegeStudent { get; set; }
     }
 }
