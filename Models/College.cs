@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace Cliqlearn.Models
 {
-    public class Student
+    public class College
     {
         public int id { get; set; }
+        public string college_name { get; set; }
+        public string college_address { get; set; }
         [Required]
-        public string name { get; set; }
+        public string college_email { get; set; }
         [Required]
-        public string lastName { get; set; }
-        [Required]
-        public string email { get; set; }
-        [Required]
-        public string password { get; set; }
+        public string college_password { get; set; }
     }
 }

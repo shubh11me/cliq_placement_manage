@@ -11,5 +11,7 @@ namespace Cliqlearn.Models
         public CliqDBContext(DbContextOptions<CliqDBContext> options) : base(options)
         {
         }
+        public DbSet<Student> students { get; set; }
+        public DbSet<College> colleges { get; set; }
     }
 }
